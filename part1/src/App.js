@@ -3,21 +3,31 @@ import Content from "./Content"
 import Total from "./Total"
 
 const App = () => {
-  const course = 'Desenvolvimento de aplicação Half Stack'
-  const part1 = 'Fundamentos da biblioteca React'
-  const exercises1 = 10
-  const part2 = 'Usando props para passar dados'
-  const exercises2 = 7
-  const part3 = 'Estado de um componente'
-  const exercises3 = 14
+ const course = {
+    name: 'Desenvolvimento de aplicação Half Stack',
+    parts: [
+      {
+        name: 'Fundamentos da biblioteca React',
+        exercises: 10
+      },
+      {
+        name: 'Usando props para passar dados',
+        exercises: 7
+      },
+      {
+        name: 'Estado de um componente',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header course={course}/>
+      <Header nada={course.name}/>
       
-      <Content part1={part1} part2={part2} part3={part3} exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
+      <Content parts={course.parts}/>
       
-      <Total total={exercises1 + exercises2 + exercises3}/>
+      <Total parts={course.parts}/>
     </div>
   )
 }
