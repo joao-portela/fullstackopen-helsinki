@@ -2,6 +2,21 @@ import { useState } from 'react'
 import Exibir from "./Exibir"
 import Button from "./Button"
 
+const Historico = (props) => {  
+  if (props.todosOsCliques.length === 0) {    
+    return (      
+      <div>        
+        Clique em um dos botões para usar a aplicação!      
+      </div>    
+    )  
+  }  
+    return (    
+      <div>      
+      Histórico de cliques nos botões: {props.todosOsCliques.join(' ')}    
+      </div>  
+    )
+}
+
 const App = () => {
   const [esquerda, setEsquerda] = useState(0)
   const [direita, setDireita] = useState(0)
@@ -17,7 +32,6 @@ const App = () => {
   }
 
   const handleCliqueDireita = () => {
-    setTodos(todosOsCliques.concat('D'))
     setDireita(direita + 1)
 
     setTotal(esquerda + direita)
@@ -28,7 +42,6 @@ const App = () => {
       {esquerda}
       <button onClick={handleCliqueEsquerda}>Esquerda</button>
       <button onClick={handleCliqueDireita}>Direita</button>
-      {direita}
       <p>{todosOsCliques.join(' ')}</p>
 
       <p>Total {total}</p>
