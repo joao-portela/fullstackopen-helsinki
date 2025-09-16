@@ -3,18 +3,32 @@ import Button from './Button'
 import Header from './Header'
 import Exibir from './Exibir'
 
-const Statistics = (props) => {
+const StatisticsLine = (props) => {
   return (
     <>
-      <Header titulo={'statistics'}/>
-
-      <Exibir feedback={'Good'} contador={props.good}/>
-      <Exibir feedback={'Neutral'} contador={props.neutral}/>
-      <Exibir feedback={'Bad'} contador={props.bad}/>
-      <Exibir feedback={'Total'} contador={props.total}/>
-      <Exibir feedback={'Média'} contador={props.media}/>
-      <Exibir feedback={'Positivos'} contador={props.positivo + ' %'}/>
+      <div>{props.text} {props.value}</div>
     </>
+  )
+}
+
+const Statistics = (props) => {
+  if (props.good != 0 || props.neutral != 0 || props.bad != 0 ) {
+    return (
+      <>
+        <Header titulo={'statistics'}/>
+
+        <StatisticsLine text={'Good'} value={props.good}/>
+        <StatisticsLine text={'Neutral'} value={props.neutral}/>
+        <StatisticsLine text={'Bad'} value={props.bad}/>
+        <StatisticsLine text={'Total'} value={props.total}/>
+        <StatisticsLine text={'Média'} value={props.media}/>
+        <StatisticsLine text={'Positivos'} value={props.positivo + ' %'}/>
+      </>
+    )
+  }
+
+  return (
+     <h3>Não há nenhum feedback ainda</h3>
   )
 }
 
