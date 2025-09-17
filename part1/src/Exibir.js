@@ -1,3 +1,3 @@
-const Exibir = ({ contador, feedback }) => <div>{feedback} {contador}</div>
+const Exibir = ({ anedote }) => <div>{anedote}</div>
 
 export default Exibir
