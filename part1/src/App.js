@@ -33,15 +33,6 @@ const Statistics = (props) => {
 }
 
 const App = () => {
-  // salve os cliques de cada botão em seu próprio estado
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
-  const [total, setTotal] = useState(0)
-  const [media, setMedia] = useState(0)
-  const [positivo, setPositivo] = useState(0)
-  const [selected, setSelected] = useState(0)
-
   const anecdotes = [
     'Se fazer algo dói, faça isso com mais frequência.',
     'Contratar mão de obra para um projeto de software que já está atrasado, faz com que se atrase mais ainda!',
@@ -52,10 +43,29 @@ const App = () => {
     'Programar sem o uso extremamente intenso do console.log é o mesmo que um médico se recusar a usar raio-x ou testes sanguíneos ao diagnosticar pacientes.',
     'A única maneira de ir rápido é ir bem.'
   ]
+  
+  // salve os cliques de cada botão em seu próprio estado
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+  const [total, setTotal] = useState(0)
+  const [media, setMedia] = useState(0)
+  const [positivo, setPositivo] = useState(0)
+  const [selected, setSelected] = useState(0)
+  const [voto, setVoto] = useState(Array(anecdotes.length).fill(0));
+
+
+  
 
   const NextAnecdote = () => {
     setSelected((Math.floor(Math.random() * (anecdotes.length))))
   }
+
+  const votar = () => {
+    const copiaVoto = [...voto]
+    copiaVoto[selected] += 1
+    setVoto(copiaVoto)
+  } 
 
 
   const avaliarClique = (feedback) => {
@@ -97,7 +107,9 @@ const App = () => {
       
 
       <Exibir anedote={anecdotes[selected]}/>
+      <Exibir anedote={voto[selected]}/>
 
+      <Button onClick={() => votar()} texto={"votar"}/>
       <Button onClick={() => NextAnecdote()} texto={'Próxima anedota'}/>
       
     </div>
